@@ -1,28 +1,32 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>Your Issued Books</h2>
+<div class="container">
+    <h2 class="text-center mb-4">Your Books</h2>
 
-{% for issue in issues %}
-    <div class="card mb-3 p-3 shadow-sm">
-        <h5>{{ issue.book.title }}</h5>
-        <p>Issued Date: {{ issue.issue_date }}</p>
+    <div class="row">
+        {% for issue in issues %}
+        <div class="col-md-6 mb-3">
+            <div class="card p-3">
+                <h5>{{ issue.book.title }}</h5>
+                <p>Issued: {{ issue.issue_date }}</p>
 
-        <p>
-            Fine: 
-            <span class="text-danger fw-bold">
-                {{ issue.calculate_fine }} BDT
-            </span>
-        </p>
+                <p>
+                    Fine:
+                    <span class="text-danger fw-bold">
+                        {{ issue.calculate_fine }} BDT
+                    </span>
+                </p>
 
-        {% if not issue.return_date %}
-            <a href="/return/{{ issue.id }}/" class="btn btn-warning">Return Book</a>
-        {% else %}
-            <span class="text-success fw-bold">Returned</span>
-        {% endif %}
+                {% if not issue.return_date %}
+                    <a href="/return/{{ issue.id }}/" class="btn btn-warning btn-sm">Return</a>
+                {% else %}
+                    <span class="text-success">Returned</span>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
     </div>
-{% empty %}
-    <p>No books issued yet.</p>
-{% endfor %}
+</div>
 
 {% endblock %}

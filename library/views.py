@@ -73,3 +73,24 @@ def user_logout(request):
 def dashboard(request):
     issues = Issue.objects.filter(user=request.user)
     return render(request, 'dashboard.html', {'issues': issues})
+
+def book_list(request):
+    query = request.GET.get('q')
+    
+    if query:
+        books = Book.objects.filter(title__icontains=query)
+    else:
+        books = Book.objects.all()
+
+    return render(request, 'books.html', {'books': books})
+
+from django.core.paginator import Paginator
+
+def book_list(request):
+    books = Book.objects.all()
+    paginator = Paginator(books, 5)
+
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    return render(request, 'books.html', {'page_obj': page_obj})

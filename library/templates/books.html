@@ -1,19 +1,30 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2 class="mb-3">Library Books</h2>
+<div class="container">
+    <h2 class="mb-4 text-center">Library Books</h2>
 
-{% for book in books %}
-    <div class="card mb-3 p-3 shadow-sm">
-        <h5>{{ book.title }}</h5>
-        <p>Author: {{ book.author }}</p>
+    <div class="row">
+        {% for book in page_obj %}
+        <div class="col-md-4 col-sm-6 mb-4">
+            <div class="card p-3 h-100 text-center">
+                <h5>{{ book.title }}</h5>
+                <p>{{ book.author }}</p>
 
-        {% if book.available %}
-            <a href="/issue/{{ book.id }}/" class="btn btn-success">Issue Book</a>
-        {% else %}
-            <span class="text-danger fw-bold">Not Available</span>
-        {% endif %}
+                {% if book.available %}
+                    <a href="/issue/{{ book.id }}/" class="btn btn-success btn-sm">Issue</a>
+                {% else %}
+                    <span class="text-danger">Not Available</span>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
     </div>
-{% endfor %}
+</div>
+
+<div class="col-md-4 col-sm-6 mb-4 fade-up" 
+style="animation-delay: {{ forloop.counter0 }}00ms;">
+</div>
+
 
 {% endblock %}

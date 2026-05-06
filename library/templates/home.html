@@ -1,9 +1,16 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-<div class="text-center">
-    <h1>Welcome to Library Management System</h1>
-    <p class="mt-3">Manage books, issue, return and track everything.</p>
-    <a href="/books/" class="btn btn-primary mt-3">View Books</a>
+<div class="text-center mt-5">
+
+    <h1 class="display-4 hero-text">Library Management System</h1>
+    <p class="lead">A smart way to manage books and users</p>
+
+    <img src="{% static 'images/2.jpg' %}" class="img-fluid">
+
+    <br>
+    <a href="/books/" class="btn btn-primary mt-4">Explore Books</a>
+
 </div>
 {% endblock %}
