@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2 class="mb-3">Library Books</h2>
+
+{% for book in books %}
+    <div class="card mb-3 p-3 shadow-sm">
+        <h5>{{ book.title }}</h5>
+        <p>Author: {{ book.author }}</p>
+
+        {% if book.available %}
+            <a href="/issue/{{ book.id }}/" class="btn btn-success">Issue Book</a>
+        {% else %}
+            <span class="text-danger fw-bold">Not Available</span>
+        {% endif %}
+    </div>
+{% endfor %}
+
+{% endblock %}
