@@ -8,10 +8,10 @@
         {% for issue in issues %}
         <div class="col-md-6 mb-3">
             <div class="card p-3">
-                <h5>{{ issue.book.title }}</h5>
-                <p>Issued: {{ issue.issue_date }}</p>
+                <h5 style="color: white;">{{ issue.book.title }}</h5>
+                <p style="color: chartreuse;">Issued: {{ issue.issue_date }}</p>
 
-                <p>
+                <p style="color: tomato;">
                     Fine:
                     <span class="text-danger fw-bold">
                         {{ issue.calculate_fine }} BDT
